@@ -94,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Bookling', #name of the database
         'USER': 'postgres', #always would be the same username
-        'PASSWORD': 'shreya2501', #password is created at the time of instalation of PostgreSql
+        'PASSWORD': 'shreyam', #password is created at the time of instalation of PostgreSql
         'HOST': 'localhost', #would be different if Pg-Admin is in LAN with another computer from which we have to access
         'PORT' : 5432 #port of PG Admin - can be changed while installing postgresql
     }
@@ -160,4 +160,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'  
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'bookling.team@gmail.com'  
-EMAIL_HOST_PASSWORD = 'bookling@007'
+EMAIL_HOST_PASSWORD = 'booklingteam'
