@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+    <title>BookLing -Category: {{instance.name}}</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <section class="bg-blue py-5">
+        <div class="container">
+            <div class="row align-items-center py-5">
+                <div class="col-md-8 text-white">
+                    <h1>Post for Category: {{instance.name}}</h1>
+
+                    {% if  instance.children.all %}
+                        <h4>Sub Categories</h4>
+                        {% for i in instance.children.all %}
+                        <a class="text-white small" href="{{ i.slug }}"> {{ i.name }} </a><br>
+                        {% endfor %}
+                    
+                        <br>
+                    {% endif %}
+                </div>
+               
+            </div>
+        </div>
+    </section>
+    <!-- Close Banner -->
+
+    <div class="container">
+        <div class="row">
+        <div class="col">
+            <h2>Category: {{instance.name}}</h2>
+
+            {% if  instance.children.all %}
+                <h4 class="text-muted">Sub Categories: </h4>
+                {% for i in instance.children.all %}
+                <a class="text-muted" href="{{ i.slug }}"> {{ i.name }} </a><br>
+                {% endfor %}
+
+            <br><hr>
+            {% endif %}
+            </div>
+        <div class="col-8">
+            <h3 class="text-center text-logo">Posts</h3>
+            {% if  instance.post_set.all %}
+    
+    {% for i in instance.post_set.all %}
+
+      <div class="column">
+        <a style="color:black;" href="{{ i.slug }}">
+        <div class="card" style="width:100%; border-color: #4beb8e;background-color:#c3e7c8;">
+          <div class="card-divider text-center">
+              <br>
+            <h3><strong>{{ i.title | truncatechars:30}}</strong></h3>
+          </div>
+
+          <div class="card-section text-center">
+            <figcaption><small>{{ i.published_date}}|{{i.author}} </small></figcaption><br>
+            {% if i.image %}
+              <img style="height:100px;" src="{{i.image.url}}"><br>
+            {% endif %}
+          <p>{{ i.content | safe | truncatechars_html:120 }}</p>
+
+        <button class="btn-success">Read More</button>
+        <br><br>
+          </div>
+        </div>
+        </a>
+      </div> <br><br>
+      
+      
+      {% endfor %}
+      {% else %}
+      <h1 class="text-center text-muted"> Sorry no posts available </h1>
+
+      {% endif %}
+      
+                              
+                 
+      </div>              
+            
+        </div>
+        
+    </div>
+        
+    
+    
+
+
+
+
+{%endblock%}
+          

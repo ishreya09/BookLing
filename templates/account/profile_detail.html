@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing- Detailed Profile </title>
+
+{% endblock %}
+
+{% block content %}
+
+<hr><div class="bg-primary text-light h2"> {{user.first_name}} {{user.last_name}}</div><hr>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <hr><div class="bg-primary text-light h2">Basic Details</div><hr>
+            <ul class="list-group">
+    
+                    <li class="list-group-item">Name : {{user.first_name}} {{user.last_name}}</li>
+                    <li class="list-group-item">Username : {{user.username}}</li>
+                    <li class="list-group-item">Email : {{user.email}}</li>
+                    <li class="list-group-item">WhatsApp Number : <a href="tel:+91 {{user.profile.whatsapp_number}}">{{user.profile.whatsapp_number}}</a></li>
+                    <li class="list-group-item">WhatsApp Link : <a href="https://api.whatsapp.com/send?phone=91{{user.profile.whatsapp_number}}"><button class="btn btn-primary text-light">Message</button></a></li>
+                    <li class="list-group-item">Review : {{user.profile.review}}</li>
+                    
+                </ul> 
+                
+            </div>
+            
+            <div class="col">
+                <hr><div class="bg-primary text-light h2">Address Details</div><hr>
+                <ul class="list-group">
+                    
+                    
+                    <li class="list-group-item">SRN : {{user.profile.SRN}}</li>
+                    <li class="list-group-item">Course : {{user.profile.Course}}</li>
+                    <li class="list-group-item">Semester : {{user.profile.Semester}}</li>
+                    <li class="list-group-item">Campus : {{user.profile.Campus}}</li>
+                    <li class="list-group-item">College : PES University</li>
+                    
+                    
+                </ul> 
+            </div>
+            
+            <div class="col">
+                <hr><div class="bg-primary text-light h2">More Details</div><hr>
+
+                <li class="list-group-item">Bio : {{user.profile.bio}}</li>
+                <br><br>
+               <!-- <a href="/account/logout"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Log Out</button></a><br><br>
+            <a href="#"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Edit Profile</button></a><br><br>-->
+            
+
+        </div>
+        
+        
+    </div>
+</div>
+<br><br>
+<hr><div class="bg-primary text-light h2">Products by {{user.first_name}} {{user.last_name}}</div><hr>
+
+<div class="container">
+    <div class="row">
+        {% for products in product %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{products.product_cover_image.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{products.name}}</h5>
+                  <p class="card-text">{{products.author}}</p>
+                  <p class="card-text">&#8377;{{products.price}}</p>
+
+
+                  <a href="#" class="btn btn-primary">WISHLIST</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}</div></div>
+
+<hr><div class="bg-primary text-light h2">Blogs by {{user.first_name}} {{user.last_name}}</div><hr>
+
+
+        {% for post in posts %}
+        <div style="height:400px" class= "col-lg-4 col-md-6 col-sl-12">
+            <div style="height:400px" class= "box-element border-rounded">
+                <a href = "/blog/{{post.slug}}"><h5 class="text-primary mt-2 p-4">{{post.title}} </h5></a>
+                <small class="text-muted p-4">{{post.author}} | {{post.published_date}}| {{post.category}}</small><br>
+                {% if post.image %}
+                <img style="width:100px;" class="rounded-pill img-fluid mr-3" src="{{post.image.url}}">
+                {%endif %}
+                <p class="p-4">{{post.content|safe|truncatechars_html:15  }}...</p>
+                <a href="/blog/{{post.slug}}" class="p-4">READ MORE </a>
+                {% endfor %}
+               
+            </div>
+            </div>
+
+
+        
+    </div>    
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing</title>
+
+{% endblock %}
+
+{% block content %}
+<hr><div class="bg-primary text-light h2">Profile Details</div><hr>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <hr><div class="bg-primary text-light h2">Basic Details</div><hr>
+            <ul class="list-group">
+    
+                    <li class="list-group-item">Name : {{user.first_name}} {{user.last_name}}</li>
+                    <li class="list-group-item">Username : {{user.username}}</li>
+                    <li class="list-group-item">Email : {{user.email}}</li>
+                    <li class="list-group-item">WhatsApp Number : <a href="tel:+91 {{user.profile.whatsapp_number}}">{{user.profile.whatsapp_number}}</a></li>
+                    <li class="list-group-item">WhatsApp Link : <a href="https://api.whatsapp.com/send?phone=91{{user.profile.whatsapp_number}}"><button class="btn btn-primary text-light">Message</button></a></li>
+                    <li class="list-group-item">Review : {{user.profile.review}}</li>
+                    
+                </ul> 
+                
+            </div>
+            
+            <div class="col">
+                <hr><div class="bg-primary text-light h2">College Details</div><hr>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">SRN : {{user.profile.SRN}}</li>
+                    <li class="list-group-item">Course : {{user.profile.Course}}</li>
+                    <li class="list-group-item">Semester : {{user.profile.Semester}}</li>
+                    <li class="list-group-item">Campus : {{user.profile.Campus}}</li>
+                    <li class="list-group-item">College : PES University</li>
+                    
+                    
+                </ul> 
+            </div>
+            
+            <div class="col">
+                <hr><div class="bg-primary text-light h2">More Details</div><hr>
+
+                <li class="list-group-item">Bio : {{user.profile.bio}}</li>
+                <br><br>
+                {% if not user.profile.email_confirmed %}
+                <a href="/account/email_confirm"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Confirm Email</button></a><br><br>
+                {% endif %}
+                <a href="/account/profile/{{user.username}}"><button style="font-size:20px;width:100%;" class="btn btn-primary" >View My Account</button></a><br><br>
+                <a href="/account/logout"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Log Out</button></a><br><br>
+            <a href="/account/change-password/"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Change Password</button></a><br><br>
+            <a href="/account/updateprofile/"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Edit Profile</button></a><br><br>
+            <a href="/product/create_product"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Add your Products</button></a><br><br>
+            <a href="/blog/blog_create"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Add your Blogs</button></a><br><br>
+
+            {% if user.is_staff %}
+            <a href="/product/create_category"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Add Product Category</button></a><br><br>
+            <!--<a href="/blog/create_category"><button style="font-size:20px;width:100%;" class="btn btn-primary" >Add Blogs Category</button></a><br><br>-->
+
+            {% endif %}
+            
+               
+            
+
+        </div>
+        
+        
+    </div>
+</div>
+
+{% endblock %}

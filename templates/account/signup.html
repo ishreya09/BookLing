@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing- Sign Up</title>
+
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success'%}
+            <div class="alert" style="background-color: green; color: rgb(255, 255, 255);">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'info'%}
+            <div class="alert" style="background-color: rgb(209, 209, 95); color: black;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'warning'%}
+            <div class="alert" style="background-color: rgb(133, 28, 28); color: white;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'error'%}
+            <div class="alert" style="background-color: red; color: white;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+
+<hr><div class="bg-primary text-light h2">Sign In Details</div><hr>
+
+<form action="/account/sign_confirm" method="POST">
+    {% csrf_token %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <hr><div class="bg-primary text-light h2">Basic Details</div><hr>
+            <input required type="text" name="firstname" placeholder="First Name ...">
+            <input required type="text" name="lastname" placeholder="Last Name ...">
+            <input required type="text" maxlength="60" name="username" placeholder="Username ...">
+            <input required type="text" maxlength=10 name="whatsappno" placeholder="WhatsApp Number(10 digits)...">
+            <input required type="password"  name="password1" placeholder="Enter Password...">
+            <input required type="password"  name="password2" placeholder="Enter Password Again...">
+            
+            
+            
+            
+        </div>
+        <div class="col">
+            <hr><div class="bg-primary text-light h2">College Details</div><hr>
+            <input required type="email" name="email" placeholder="Enter College Email Id only...">
+            <input type="text" name="SRN" placeholder="Enter SRN ...">
+            <input type="text" name="campus" placeholder="College Campus ...">
+            <input required maxlength="20" type="text" name="sem" placeholder="Semester..">
+            <input required type="text" name="course" placeholder="Course..">
+            
+            
+            
+
+            
+        </div>
+        <div class="col">
+            <hr><div class="bg-primary text-light h2">Personal Details</div><hr>
+            
+            <textarea name="bio" placeholder="Bio..." rows="16" ></textarea>
+            <br>
+            <button type="submit" style="font-size:20px;width:100%;" class="btn btn-primary" >SIGN IN</button>
+            <p style="padding:5px;" class="text-center">Already have an account? <a href="/account/login">Log In</a> Now</p>
+
+            
+            
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            
+        </div>
+    </div>
+</div>
+
+</form>
+{% endblock %}

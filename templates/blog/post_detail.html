@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load namify %}
+
+{% block metatags %}
+    <title>BookLing -{{instance.title}}</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <section class="bg-logo py-5">
+        <div class="container">
+            <div class="row align-items-center py-5">
+                <div class="col-md-8 text-white">
+                    <b><h1>{{instance.title}}</h1></b>
+                    <p>
+                        <b>{{instance.metades}}</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Close Banner -->
+    <style>
+        /* Dotted border */
+        hr.dotted {
+            border-top: 3px dotted #bbb;
+        }
+    </style>
+    <div class= "bg-logo" style="width:100%;">
+        
+        
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-logo ">
+            <li class="breadcrumb-item active" aria-current="page"><a class="text-dark" href="#">BREADCRUMB</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a class="text-dark" href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a class="text-dark" href="/blog">Blogs</a></li>
+    
+            {% for i in instance.get_slug_list_for_categories %}
+               <li class="breadcrumb-item active" aria-current="page"><a class="text-dark" href="/blog/category/{{ i }}">{{ i | get_name }}</a></li>
+            {% endfor %}
+    
+            </ol>
+        </nav>
+        </div>
+        <br>
+    <div class="container">
+        <div class="row">
+        <div class="col">
+            
+            
+            
+            
+            <section href="/blog/{{instance.slug}}" class="tm-section-pad-top tm-parallax-2">
+                <strong><h1 class="card-title text-center">{{ instance.title }} </h1></strong>
+                <p class="text-center text-muted">{{ instance.author }} | {{ instance.published_date }}|{{instance.category}}</p><br>
+                <figcaption class="text-center">
+                    
+                    Tags : {% for tag in instance.tags.all %}
+                    <a href="{% url 'blog:posts_by_tag' tag.slug %}">{{tag.name}}</a>
+                    {% if not forloop.last %},  {% endif %}
+                    {% endfor %}
+
+                </figcaption> 
+                <div class="text-center">
+                {% if instance.image %}
+                    <img style="height:300px;" src="{{instance.image.url}}"> 
+                {% endif %}
+                </div>
+                <div class="text-center" > {{ instance.content | safe |linebreaks}}       </div>
+                
+            </section>
+            <br>
+            
+            <hr class="dotted">
+            <br>
+            <section class="tm-section-pad-top tm-parallax-2">
+                <div class= "row">
+                    <div class="col-12 text-center">
+                        <h1 style="opacity:40%" class ="text-dark">Simalar Posts </h1>
+                    </div>
+                </div><br><br>
+                <div id="carousel-related-product">
+                <div class="container">
+                
+                    <div style="height:auto" class="row">
+                    {% for post in similar_post %}  
+                    <div style="height:400px" class= "col-lg-4 col-md-6 col-sl-12">
+                    <div style="height:400px" class= "box-element border-rounded">
+                        <a href = "/blog/{{post.slug}}"><h5 class="text-primary mt-2 p-4">{{post.title}} </h5></a>
+                        <small class="text-muted p-4">{{post.author}} | {{post.published_date}}| {{post.category}}</small><br>
+                        {% if post.image %}
+                        <img style="width:100px;" class="rounded-pill img-fluid mr-3" src="{{post.image.url}}">
+                        {%endif %}
+                        <p class="p-4">{{post.content|safe|truncatechars_html:15  }}...</p>
+                        <a href="/blog/{{post.slug}}" class="p-4">READ MORE </a>
+                       
+                    </div>
+                    </div><br>
+                    {% empty %}
+                    <div class= "text-center text-muted">No Similar Posts Found</div>
+                    {% endfor %}
+
+                </div>
+                </div>
+                </div>
+            </section>
+            <br> <br>
+
+
+
+            <button class="btn btn-success" ><a href="/blog" class=" text-center text-white">Back to Blogs</a></button> <br><br>
+  
+
+        </div>
+        </div>
+
+        
+    </div>
+
+
+
+
+{%endblock%}

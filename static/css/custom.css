@@ -1,0 +1,96 @@
+/* Add a black background color to the top navigation */
+.topnav {
+    overflow: hidden;
+}
+  
+/* Style the links inside the navigation bar */
+.topnav a {
+    color: black;
+}
+  
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: rgb(10, 7, 50);
+    color:#ffffff;
+}
+  
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: rgb(10, 7, 50);
+    color: #ffffff;
+}
+
+  
+
+/* Full-width input fields */
+input[type=text], input[type=password],input[type=email],input[type=date] {
+    width: 100%;
+    padding: 15px;
+    margin: 2px 0 12px 0;
+    display: inline-block;
+    font-size: 16px;
+    border: none;
+    background: #f1f1f1;
+  }
+
+textarea{
+    width: 100%;
+    padding: 15px;
+    margin: 2px 0 12px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+  
+input[type=text]:focus, input[type=password]:focus,input[type=email]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Overwrite default styles of hr */
+hr {
+    border: 1px solid #a1a0a0;
+    margin-bottom: 25px;
+}
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+  }
+  
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
+
+/* box element */
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+table,
+        td,
+        th
+        tr {
+    border-bottom: 1px solid #ccc;
+  }

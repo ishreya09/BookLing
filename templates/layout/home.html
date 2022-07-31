@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing</title>
+<link href="{% static 'css/home_img.css' %}" rel = "stylesheet">
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success'%}
+            <div class="alert" style="background-color: green; color: rgb(255, 255, 255);">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'info'%}
+            <div class="alert" style="background-color: rgb(209, 209, 95); color: black;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'warning'%}
+            <div class="alert" style="background-color: rgb(133, 28, 28); color: white;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'error'%}
+            <div class="alert" style="background-color: red; color: white;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+
+<div class="container-fluid">
+    <div class="row">
+        
+        {% for i in img %}
+        {% if i.active %}
+        <div class="col text-center">
+            {% if i.image %}
+                <img  src="{{i.image.url}}" height="200">
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}        
+    </div>
+      
+</div>
+<hr>
+<div class="container-fluid">
+
+    <div class="row align-items-center">
+      <div class="col">
+       <div class="p-3 text-center">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'img/logo.png' %}" >
+            </a>
+           <h1  style="font-size : 100px;" class="text-primary"  >BookLing</h1>
+           <div class="text-dark disabled" >Giving freedom to minds...</div>
+        </div>
+       
+      </div>
+    
+    <div class="col">
+        <p style="font-size:20px;" class="text-center">
+            
+            Write about us briefly 
+            <br> <br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque a enim vitae dapibus. Mauris laoreet velit in porttitor mollis. 
+            Curabitur semper nulla purus, eu venenatis urna malesuada eget. Fusce id fermentum nunc, 
+            et scelerisque sapien. Vestibulum eu nisi sit amet nibh imperdiet dapibus eu a odio. Aliquam 
+            eget molestie purus, nec ultrices turpis. Nunc rutrum quam justo, id elementum erat tristique 
+            id. Vestibulum scelerisque convallis tempor. Donec quam nisi, faucibus sed euismod sed, pretium
+             egestas felis. Pellentesque ultrices tincidunt fringilla.
+            
+        </p>
+    </div>
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col">
+            <img style="border-radius:50%;" src ="{% static '/img/girl.png' %}">
+            
+        </div>
+        <div class="col">
+            <div class="text-center">
+                <h1 style="font-size:100px;" class="text-primary">SHOP BOOKS AT LOWER PRICES</h1>
+                <a href ="#"><button class="btn btn-primary text-light">EXPLORE OUR PRODUCTS</button></a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<hr>
+
+
+
+
+
+{% endblock %}

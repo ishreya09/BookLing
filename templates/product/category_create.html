@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container"></div>
+<form action="/account/category_create" method="POST">
+<div><input type="text" placeholder="Category" ></div><br>
+<div><input type="submit" value="Submit"></div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing: About</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+                <h1>WishList</h1>
+                <table style="width:100%">
+                    <thead>
+                        
+                        <tr style="height:100px">
+                            <th>PRODUCT </th>
+                            <th>Product Name </th>
+                            <th>PRICE </th>
+                            <th>REMOVE FROM WISHLIST </th>
+
+                        </tr>
+
+                    </thead>
+                    <!--table ka head-->
+                    <tbody>
+                        {% for item in items  %}
+                        <tr style="height:100px">
+                            
+                            <td style="text-align: center"><img
+                                src="{{item.product.product_cover_image.url}}" alt="" height="100"
+                                    width="100"></td>
+                            <td style="text-align: center">{{item.product.name}}</td>
+                            <td style="text-align: center">{{item.product.price}}</td>
+                            <td style="text-align: center"><button data-product={{item.product.product_id}} data-action='remove' class="update-wishlist btn btn-outline-danger" value="Remove from wishlist">Remove from Wishlist</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </div>
+    <!--table ki body-->
+    </table>
+    <br>
+    
+</div>
+</div>
+
+
+{% endblock %}

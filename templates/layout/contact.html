@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing: Contact Us</title>
+
+{% endblock %}
+
+{% block content %}
+<div class="text-center text-primary">
+    <hr>
+    <h1 style="font-size:60px" >Contact Us</h1>
+    <hr>
+</div>
+
+<div class="container py-5">
+    <div class="row py-5">
+        <form class="col-md-9 m-auto" action="/contact_success" method="post" >
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Name">
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject">
+            </div>
+            <div class="mb-3">
+                <label for="message">Message</label>
+                <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8"></textarea>
+            </div>
+            <div class="row">
+                <div class="col text-end mt-2">
+                    <button type="submit" class="btn btn-primary btn-lg px-3">SUBMIT</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

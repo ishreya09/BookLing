@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing</title>
+
+
+{% endblock %}
+
+{% block content %}
+
+<hr><div class="bg-primary text-light h2">Categories</div><hr>
+
+
+<div class="container-fluid">
+    <div class="row">
+        {% for categories in category %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{categories.name}}</h5>
+                 
+                  <a href="#" class="btn btn-primary">See Products</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing: About</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+<hr><div class="bg-primary text-light h2">Products</div><hr>
+
+<div class="container-fluid">
+    <div class="row">
+        {% for products in product %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{products.product_cover_image.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{products.name}}</h5>
+                  <p class="card-text">{{products.author}}</p>
+                  <a href=""><p class="card-text">{{products.category}}</p></a>
+                  
+                  <p class="card-text">&#8377;{{products.price}}</p>
+
+
+                  <a href="/wishlist/additem" class="btn btn-primary update-wishlist" data-action="addtowishlist" data-product={{products.product_id}} >WISHLIST</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+{% endblock %}

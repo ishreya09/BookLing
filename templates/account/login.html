@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing</title>
+
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success'%}
+            <div class="alert" style="background-color: green; color: rgb(255, 255, 255);">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'info'%}
+            <div class="alert" style="background-color: rgb(209, 209, 95); color: black;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'warning'%}
+            <div class="alert" style="background-color: rgb(133, 28, 28); color: white;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% elif message.tags == 'error'%}
+            <div class="alert" style="background-color: red; color: white;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+
+<hr><div class="bg-primary text-light h2">Login</div><hr>
+
+
+<div class="container">
+    <form action="{% url 'login_success' %}" method="POST">
+    <div class="row">
+        <div class="col">
+            
+                {% csrf_token %}
+            <input required  type="text" maxlength="60" name="username" placeholder="Username ...">
+            <input required type="password" name="password" placeholder="Enter Password..."> <br>
+            <button type="submit" style="font-size:20px;width:100%;" class="btn btn-primary" >Log In</button>
+            <br><br>
+           
+            <p class="text-center">Don't have an account? <a href="/account/sign_up">Sign In</a> Now</p>
+            <p class="text-center"> <a href="/account/password-reset">Forgot Password</a></p>
+
+        </div>
+    </div>
+    </form>
+</div>
+
+{% endblock %}

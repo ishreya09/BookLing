@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+    <title>BookList - Blog Page:List View</title>
+{% endblock %}
+
+
+{% block content %}
+  
+        <div class="row text-dark" >
+        <div class="col-4 bg-light text-dark text-center">
+            <br>
+            {% if category %}
+            <h3>Categories</h3>
+            {% for c in category %}
+                
+                <a class="text-dark" href="/blog/category/{{c.slug}}">{{c.name}}</a><br>
+               
+                
+            {% endfor %}
+            
+            <br><hr>
+            {% endif %}
+           
+            <h3>Posts</h3>
+            <hr>
+            {% for instance in posts %}
+                <a class="text-dark" href="/blog/{{instance.slug}}" >{{instance.title}}</a><br>
+            {% endfor %}
+            <br>
+        </div>
+        <div class="col-8">
+            {% for instance in page_obj %}
+                <section href="/blog/{{instance.slug}}" class= "text-dark">
+                <div>
+                   <a class="text-dark"  href="/blog/{{ instance.slug  }}"><h3><b>{{instance.title}}</b></h3></a>
+                   <figcaption class="text-muted">
+
+                    Tags : {% for tag in instance.tags.all %}
+                    <a href="{% url 'blog:posts_by_tag' tag.slug %}">{{tag.name}}</a>
+                    {% if not forloop.last %},  {% endif %}
+                    {% endfor %}
+
+                </figcaption>
+                    <figcaption class="text-muted">{{instance.author}}|{{instance.published_date}}</figcaption>
+                    <p>{{ instance.content |safe| truncatechars_html:50  }}</p>
+                    <a href= "/blog/{{instance.slug}}" style="color: blue;"> READ MORE </a>
+
+                    <hr><br>
+                </div>
+                </section>
+
+            {% endfor %}
+            
+
+            <div class="container">
+                <div class="mx-auto text-center col-align-center">
+                    <div class="pagination">
+                        <span class="step-links">
+            
+                                {%if page_obj.has_previous %} {# whether the previous page exists #}
+                                    <button class= "btn btn-success"><a class="text-light" href="?page={{page_obj.previous_page_number}}">Previous</a> {# link to the prev page #}</button>
+                                {% endif %}
+                                <span><button class= "btn btn-success">{{page_obj.number}}</button></span> {# the current page number #}
+                                
+                                {%if page_obj.has_next %} {# whether the next page exists #}
+                                    <button class="btn btn-success"><a class="text-light" href="?page={{page_obj.next_page_number}}">Next</a> {# link to the next page #} </button>
+                                {% endif %}
+                    
+                        </span>
+                    </div>
+            
+                </div>
+            </div>
+
+
+        </div>
+        </div>
+
+        
+    
+
+
+
+{%endblock%}
+          

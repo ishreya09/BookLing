@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metatags %}
+<title>BookLing : Contact Successful</title>
+{% endblock %}
+
+{% block content %}
+
+<section class="bg-light text-dark" >
+    <div style="height:700px;" class="mx-auto">
+    <div class="row mt-6 mb-6">
+    <div class="container py-5">
+        <div class="row py-5">
+            <div class="row text-center mx-auto">
+            <h1> Thank You for Contacting us {{contact.name}} </h1>
+            <h3>We will try to reach you as soon as possible for the subject: {{contact.subject}}</h3>
+            <h6>You would hear from us on your gmail address: {{contact.email}} <br>
+                We would request you to wait for atleast 48 hours for our reply </h6>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et perferendis, 
+                    laudantium iste iure rem modi sequi deleniti harum, amet ratione nobis minus. Velit officiis, 
+                    temporibus sed maiores corporis reiciendis repellendus cupiditate? Perferendis, tempore.
+                     Eligendi laudantium temporibus qui molestias quis. Nulla, temporibus. Provident 
+                     cumque similique quidem cum itaque magni temporibus eum? Velit blanditiis, aut, 
+                     culpa cumque tempore magnam atque veritatis rem perspiciatis rerum iste iusto 
+                     necessitatibus consequatur ipsa. Distinctio debitis quos veniam assumenda quam, 
+                     dolor totam libero adipisci nihil voluptatem. Deserunt veniam quis optio aperiam maxime 
+                     ratione illum ducimus doloremque. Aperiam quaerat eos dicta explicabo voluptates nisi 
+                     repellat ratione porro quo.
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
+{% endblock %}
